@@ -94,7 +94,9 @@ executable directly by prefixing the command name with a backslash. So, instead
 of:
 
    $ go ...
+
 run
+
    $ \go ...
 
 Note that this is generic behavior found in most(?) shells.
