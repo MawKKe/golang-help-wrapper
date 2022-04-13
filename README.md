@@ -9,7 +9,7 @@ now as a simple Go binary!
 ](https://github.com/MawKKe/golang-help-wrapper/actions/workflows/go.yml)
 
 ## What is this?
-It annoys me greatly that none of the go subcommands have a help switch (`-h`
+It annoys me greatly that none of the `go` subcommands have a help switch (`-h`
 or `--help`), requiring me to use `go help <subcommand>` instead. This is just
 annoying, adds more work than is necessary, and results in bad developer
 experience. I use shell history (`ctrl-r`, `ctrl-p`, ...) heavily, and this
