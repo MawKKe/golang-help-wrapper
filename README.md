@@ -35,7 +35,7 @@ will launch
     
 Install the executable:
 
-    $ go install github.com/MawKKe/golang-help-wrapper
+    $ go install github.com/MawKKe/golang-help-wrapper@latest
 
 then add
 
