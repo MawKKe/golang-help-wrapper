@@ -177,12 +177,6 @@ var testData []testCase = []testCase{
 	},
 }
 
-/*
-(7) go subcmd -h foo      -> go help subcmd       # basically same as (5)
-(8) go subcmd foo -h      -> go help subcmd       # interpreted as 'go subcmd -h'
-(9) go subcmd -- foo -h   -> go subcmd -- foo -h  # passthru, e.g case subcmd == run
-*/
-
 func TestCaptureHelp(t *testing.T) {
 	var counter int
 	for _, test := range testData {
@@ -197,17 +191,6 @@ func TestCaptureHelp(t *testing.T) {
 	if counter <= 0 {
 		t.Fatalf("No tests were run?")
 	}
-	/*
-		input := []string{"-h"}
-		got, ok := captureHelp(input)
-		expect := helpFlagMeta{subcmd: "", help_idx: 0, help_arg: "-h"}
-		if !ok {
-			t.Fatalf("Unexpected return value ok=%v for %+v", ok, input)
-		}
-		if got != expect {
-			t.Fatalf("expected: %+v, got: %+v", expect, got)
-		}
-	*/
 }
 func TestReinterpretArgs(t *testing.T) {
 	var counter int
