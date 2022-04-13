@@ -5,7 +5,7 @@ An utility wrapper program for showing Go help topics
 Inspired by https://gist.github.com/MawKKe/485ad4ce21223309d2e90713f3b9b5ba -
 now as a simple Go binary!
 
-[![Go](https://github.com/MawKKe/golang-help-wrapper/actions/workflows/go.yml/badge.svg)](https://github.com/MawKKe/golang-help-wrapper/actions/workflows/go.yml)
+[![Go](https://github.com/MawKKe/golang-help-wrapper/workflows/Go/badge.svg)](https://github.com/MawKKe/golang-help-wrapper/actions/workflows/go.yml)
 
 ## What is this?
 It annoys me greatly that none of the `go` subcommands have a help switch (`-h`
