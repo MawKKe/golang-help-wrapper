@@ -93,11 +93,11 @@ Fear not: if you run into problems, you can always invoke the actual `go`
 executable directly by prefixing the command name with a backslash. So, instead
 of:
 
-   $ go ...
+    $ go ...
 
 run
 
-   $ \go ...
+    $ \go ...
 
 Note that this is generic behavior found in most(?) shells.
 
