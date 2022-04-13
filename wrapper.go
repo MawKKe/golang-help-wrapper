@@ -88,4 +88,6 @@ func main() {
 
 	cmd.Run()
 
+    // propagate error code to caller
+    os.Exit(cmd.ProcessState.ExitCode())
 }
