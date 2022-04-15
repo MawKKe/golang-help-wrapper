@@ -40,11 +40,11 @@ var testData []testCase = []testCase{
 		input: []string{"help"},
 		expectedCapture: testCaptureResult{
 			value: helpFlagMeta{
-				subcmd:          "help",
-				help_idx:        0,
-				help_arg:        "",
-				help_flag_found: false,
-				original_args:   []string{"help"},
+				subcmd:        "help",
+				helpIdx:       0,
+				helpArg:       "",
+				helpFlagFound: false,
+				originalArgs:  []string{"help"},
 			},
 		},
 		expectedNewArgs: []string{"help"},
@@ -54,11 +54,11 @@ var testData []testCase = []testCase{
 		input: []string{"-h"},
 		expectedCapture: testCaptureResult{
 			value: helpFlagMeta{
-				subcmd:          "",
-				help_idx:        0,
-				help_arg:        "-h",
-				help_flag_found: true,
-				original_args:   []string{"-h"},
+				subcmd:        "",
+				helpIdx:       0,
+				helpArg:       "-h",
+				helpFlagFound: true,
+				originalArgs:  []string{"-h"},
 			},
 		},
 		expectedNewArgs: []string{"help"},
@@ -68,11 +68,11 @@ var testData []testCase = []testCase{
 		input: []string{"help", "-h"},
 		expectedCapture: testCaptureResult{
 			value: helpFlagMeta{
-				subcmd:          "help",
-				help_idx:        1,
-				help_arg:        "-h",
-				help_flag_found: true,
-				original_args:   []string{"help", "-h"},
+				subcmd:        "help",
+				helpIdx:       1,
+				helpArg:       "-h",
+				helpFlagFound: true,
+				originalArgs:  []string{"help", "-h"},
 			},
 		},
 		expectedNewArgs: []string{"help"},
@@ -82,11 +82,11 @@ var testData []testCase = []testCase{
 		input: []string{"help", "foo"},
 		expectedCapture: testCaptureResult{
 			value: helpFlagMeta{
-				subcmd:          "help",
-				help_idx:        0,
-				help_arg:        "",
-				help_flag_found: false,
-				original_args:   []string{"help", "foo"},
+				subcmd:        "help",
+				helpIdx:       0,
+				helpArg:       "",
+				helpFlagFound: false,
+				originalArgs:  []string{"help", "foo"},
 			},
 		},
 		expectedNewArgs: []string{"help", "foo"},
@@ -96,11 +96,11 @@ var testData []testCase = []testCase{
 		input: []string{"-h", "foo"},
 		expectedCapture: testCaptureResult{
 			value: helpFlagMeta{
-				subcmd:          "",
-				help_idx:        0,
-				help_arg:        "-h",
-				help_flag_found: true,
-				original_args:   []string{"-h", "foo"},
+				subcmd:        "",
+				helpIdx:       0,
+				helpArg:       "-h",
+				helpFlagFound: true,
+				originalArgs:  []string{"-h", "foo"},
 			},
 		},
 		expectedNewArgs: []string{"help"},
@@ -110,11 +110,11 @@ var testData []testCase = []testCase{
 		input: []string{"foo", "-h"},
 		expectedCapture: testCaptureResult{
 			value: helpFlagMeta{
-				subcmd:          "foo",
-				help_idx:        1,
-				help_arg:        "-h",
-				help_flag_found: true,
-				original_args:   []string{"foo", "-h"},
+				subcmd:        "foo",
+				helpIdx:       1,
+				helpArg:       "-h",
+				helpFlagFound: true,
+				originalArgs:  []string{"foo", "-h"},
 			},
 		},
 		expectedNewArgs: []string{"help", "foo"},
@@ -124,11 +124,11 @@ var testData []testCase = []testCase{
 		input: []string{"foo", "-h", "bar"},
 		expectedCapture: testCaptureResult{
 			value: helpFlagMeta{
-				subcmd:          "foo",
-				help_idx:        1,
-				help_arg:        "-h",
-				help_flag_found: true,
-				original_args:   []string{"foo", "-h", "bar"},
+				subcmd:        "foo",
+				helpIdx:       1,
+				helpArg:       "-h",
+				helpFlagFound: true,
+				originalArgs:  []string{"foo", "-h", "bar"},
 			},
 		},
 		expectedNewArgs: []string{"help", "foo"},
@@ -138,11 +138,11 @@ var testData []testCase = []testCase{
 		input: []string{"foo", "bar", "-h"},
 		expectedCapture: testCaptureResult{
 			value: helpFlagMeta{
-				subcmd:          "foo",
-				help_idx:        2,
-				help_arg:        "-h",
-				help_flag_found: true,
-				original_args:   []string{"foo", "bar", "-h"},
+				subcmd:        "foo",
+				helpIdx:       2,
+				helpArg:       "-h",
+				helpFlagFound: true,
+				originalArgs:  []string{"foo", "bar", "-h"},
 			},
 		},
 		expectedNewArgs: []string{"help", "foo"},
@@ -152,11 +152,11 @@ var testData []testCase = []testCase{
 		input: []string{"foo", "--", "bar", "-h"},
 		expectedCapture: testCaptureResult{
 			value: helpFlagMeta{
-				subcmd:          "foo",
-				help_idx:        0,
-				help_arg:        "",
-				help_flag_found: false, // !!! NOTE: double dash prevents capture (-h is after --)
-				original_args:   []string{"foo", "--", "bar", "-h"},
+				subcmd:        "foo",
+				helpIdx:       0,
+				helpArg:       "",
+				helpFlagFound: false, // !!! NOTE: double dash prevents capture (-h is after --)
+				originalArgs:  []string{"foo", "--", "bar", "-h"},
 			},
 		},
 		expectedNewArgs: []string{"foo", "--", "bar", "-h"},
@@ -166,11 +166,11 @@ var testData []testCase = []testCase{
 		input: []string{"foo", "-h", "--", "bar", "-h"},
 		expectedCapture: testCaptureResult{
 			value: helpFlagMeta{
-				subcmd:          "foo",
-				help_idx:        1,
-				help_arg:        "-h",
-				help_flag_found: true, // !!! NOTE: double dash does not prevent capture (-h is before --)
-				original_args:   []string{"foo", "-h", "--", "bar", "-h"},
+				subcmd:        "foo",
+				helpIdx:       1,
+				helpArg:       "-h",
+				helpFlagFound: true, // !!! NOTE: double dash does not prevent capture (-h is before --)
+				originalArgs:  []string{"foo", "-h", "--", "bar", "-h"},
 			},
 		},
 		expectedNewArgs: []string{"help", "foo"},
@@ -186,7 +186,7 @@ func TestCaptureHelp(t *testing.T) {
 				t.Fatalf("input: %v\nexpected result:\n\t%+#v\ngot:\n\t%+#v", test.input, test.expectedCapture.value, res)
 			}
 		})
-		counter += 1
+		counter++
 	}
 	if counter <= 0 {
 		t.Fatalf("No tests were run?")
@@ -201,7 +201,7 @@ func TestReinterpretArgs(t *testing.T) {
 				t.Fatalf("expected result:\n\t%v\ngot:\n\t%v", test.expectedNewArgs, args)
 			}
 		})
-		counter += 1
+		counter++
 	}
 	if counter <= 0 {
 		t.Fatalf("No tests were run?")

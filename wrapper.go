@@ -12,25 +12,23 @@ import (
 )
 
 type helpFlagMeta struct {
-	subcmd          string
-	help_idx        int
-	help_arg        string
-	help_flag_found bool
-	original_args   []string
+	subcmd        string
+	helpIdx       int
+	helpArg       string
+	helpFlagFound bool
+	originalArgs  []string
 }
 
 // Interpret command line arguments; return the finaal argument list, possibly
 // differing from original
 func (meta helpFlagMeta) reinterpretArgs() []string {
-	if meta.help_flag_found {
-		if meta.help_idx == 0 || meta.subcmd == "help" {
+	if meta.helpFlagFound {
+		if meta.helpIdx == 0 || meta.subcmd == "help" {
 			return []string{"help"}
-		} else {
-			return []string{"help", meta.subcmd}
 		}
-	} else {
-		return meta.original_args
+		return []string{"help", meta.subcmd}
 	}
+	return meta.originalArgs
 }
 
 // Parse command line arguments; lookup first occurence of "-h" or "--help" flag.
@@ -46,14 +44,14 @@ func captureHelp(args []string) helpFlagMeta {
 		}
 		if arg == "-h" || arg == "--help" {
 			return helpFlagMeta{
-				subcmd:          subcmd,
-				help_idx:        i,
-				help_arg:        arg,
-				help_flag_found: true,
-				original_args:   args}
+				subcmd:        subcmd,
+				helpIdx:       i,
+				helpArg:       arg,
+				helpFlagFound: true,
+				originalArgs:  args}
 		}
 	}
-	return helpFlagMeta{help_flag_found: false, subcmd: subcmd, original_args: args}
+	return helpFlagMeta{helpFlagFound: false, subcmd: subcmd, originalArgs: args}
 }
 
 func main() {
@@ -66,14 +64,14 @@ func main() {
 		fmt.Fprintf(os.Stderr, "DEBUG: %+#v\n", meta)
 	}
 
-	_, suppress_warn := os.LookupEnv("GOLANG_HELP_WRAPPER_WARN_SUPPRESS")
+	_, suppressWarn := os.LookupEnv("GOLANG_HELP_WRAPPER_WARN_SUPPRESS")
 
 	args := meta.reinterpretArgs()
 
-	if meta.help_flag_found && !suppress_warn {
+	if meta.helpFlagFound && !suppressWarn {
 		// reinterpret help flag
 		fmt.Fprintln(os.Stderr, "@@@")
-		fmt.Fprintf(os.Stderr, "@@@ WARNING: help flag %q at position %d reinterpreted by %q\n", meta.help_arg, meta.help_idx+1, base)
+		fmt.Fprintf(os.Stderr, "@@@ WARNING: help flag %q at position %d reinterpreted by %q\n", meta.helpArg, meta.helpIdx+1, base)
 		fmt.Fprintf(os.Stderr, "@@@ WARNING: -> running 'go %s'\n", strings.Join(args, " "))
 		fmt.Fprintln(os.Stderr, "@@@")
 	}
