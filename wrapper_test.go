@@ -7,13 +7,7 @@ import (
 
 type testCaptureResult struct {
 	value helpFlagMeta
-	ok    bool
 }
-type testInterpResult struct {
-	args []string
-	ok   bool
-}
-
 type testCase struct {
 	name            string
 	input           []string
