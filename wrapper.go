@@ -19,8 +19,8 @@ type helpFlagMeta struct {
 	original_args   []string
 }
 
-// interpret command line arguments
-// return final argument list and boolean describing whether arguments were reinterpreted
+// Interpret command line arguments; return the finaal argument list, possibly
+// differing from original
 func (meta helpFlagMeta) reinterpretArgs() []string {
 	if meta.help_flag_found {
 		if meta.help_idx == 0 || meta.subcmd == "help" {
@@ -35,7 +35,6 @@ func (meta helpFlagMeta) reinterpretArgs() []string {
 
 // Parse command line arguments; lookup first occurence of "-h" or "--help" flag.
 // Lookup will be terminated if a double dash ("--") is discovered.
-// Returns true/false as second value describing whether a help flag was found.
 func captureHelp(args []string) helpFlagMeta {
 	var subcmd string
 	for i, arg := range args {
